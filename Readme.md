@@ -1,4 +1,4 @@
-# Create Agile Stories
+# Issue Tracker
 
 ###### Purpose:
     To create agile stories with priorities
