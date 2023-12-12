@@ -16,6 +16,7 @@ let chathams_blue = "#1A4B84";
 
 // Elements
 const description = document.getElementById("description");
+const taskTitle = document.getElementById("taskTitle");
 const assignedto = document.getElementById("assignedto");
 const priority = document.getElementById("priority");
 const storySubmitBtn = document.getElementById("storySubmitBtn");
@@ -27,6 +28,7 @@ const warnLength = 90;
 // Event Listeners
 ["keyup", "change", "keydown", "focus"].forEach(function (e) {
   description.addEventListener(e, textCounter);
+  taskTitle.addEventListener(e, textCounter);
 });
 
 ["cut", "copy", "paste"].forEach(function (e) {
@@ -86,6 +88,7 @@ const updateList = (newStory, updatedList) => {
             <p class="text-start pb-1">Assigned to : ${
               assignedToList[issue.assignedTo]
             }</p>
+            <p class="text-start pb-1">Task Title: ${issue.taskTitle}</p>
              <p class="card-text text-start">${issue.description}</p>
              <div class="d-grid gap-2 d-md-flex justify-content-md-end">
              ${
@@ -126,6 +129,11 @@ initApp();
 // form validation
 const formValidate = (e) => {
   e.preventDefault();
+  if (taskTitle.value === "") {  // Validate task title
+    alert("Please enter task title");
+    taskTitle.focus();
+    return;
+  }
   if (description.value === "") {
     alert("Please enter description");
     description.focus();
@@ -148,11 +156,13 @@ const formValidate = (e) => {
   }
   const newStory = {
     id: "id" + Math.random().toString(16).slice(2), //generate id
+    taskTitle: taskTitle.value,
     description: description.value,
     assignedTo: assignedto.value,
     priority: priority.value,
     storyStatus: "open",
   };
+  taskTitle.value = "";
   description.value = "";
   assignedto.value = "";
   priority.value = "";
