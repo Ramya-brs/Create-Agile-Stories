@@ -75,6 +75,7 @@ const updateList = (newStory, updatedList) => {
       a += `
        <div id=${issue.id} class="col-4">
        <div class="p-3">
+         <p class="text-start pb-1">Task Title: ${issue.taskTitle}</p>
          <div class="card" >
            <div class="card-header">Priority: ${priorityList[issue.priority]} 
            <span class="mx-4 ${
@@ -88,7 +89,6 @@ const updateList = (newStory, updatedList) => {
             <p class="text-start pb-1">Assigned to : ${
               assignedToList[issue.assignedTo]
             }</p>
-            <p class="text-start pb-1">Task Title: ${issue.taskTitle}</p>
              <p class="card-text text-start">${issue.description}</p>
              <div class="d-grid gap-2 d-md-flex justify-content-md-end">
              ${
